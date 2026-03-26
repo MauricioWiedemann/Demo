@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Demo</string>
+    <string name="escrib_una_tarea">Escribí una tarea</string>
+    <string name="agregar">Agregar</string>
 </resources>
