@@ -62,4 +62,73 @@ class TaskViewModelTest {
         assertNull(viewModel.uiState.value.error)
     }
 
+    @Test fun deleteTask_setValid() = runTest {
+        val repository = mockk<TaskRepository>(relaxed = true)
+
+        coEvery { repository.addTask("1 - Cocinar") } returns Unit
+        coEvery { repository.deleteTask(TaskEntity(id = 1, title = "1 - Cocinar")) } returns Unit
+        coEvery { repository.getTasks() } returns emptyList()
+
+        val viewModel = TaskViewModel(repository)
+
+        viewModel.addTask("1 - Cocinar")
+        viewModel.deleteTask(TaskEntity(id = 1, title = "1 - Cocinar"))
+        advanceUntilIdle()
+
+        coVerify(exactly = 1) { repository.addTask("1 - Cocinar") }
+        coVerify(exactly = 1) { repository.deleteTask(TaskEntity(id = 1, title = "1 - Cocinar")) }
+
+        assertEquals(0, viewModel.uiState.value.tasks.size)
+        assertNull(viewModel.uiState.value.error)
+    }
+
+    @Test fun markTask_setDone() = runTest {
+        val repository = mockk<TaskRepository>(relaxed = true)
+
+        coEvery { repository.addTask("1 - Cocinar") } returns Unit
+        coEvery { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar")) } returns Unit
+        coEvery { repository.getTasks() } returns listOf(
+            TaskEntity(id = 1, title = "1 - Cocinar", isDone = true)
+        )
+
+        val viewModel = TaskViewModel(repository)
+
+        viewModel.addTask("1 - Cocinar")
+        viewModel.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar"))
+        advanceUntilIdle()
+
+        coVerify(exactly = 1) { repository.addTask("1 - Cocinar") }
+        coVerify(exactly = 1) { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar")) }
+
+        assertEquals(1, viewModel.uiState.value.tasks.size)
+        assertEquals(true, viewModel.uiState.value.tasks.first().isDone)
+        assertNull(viewModel.uiState.value.error)
+    }
+
+    @Test fun markTask_setUndone() = runTest {
+        val repository = mockk<TaskRepository>(relaxed = true)
+
+        coEvery { repository.addTask("1 - Cocinar") } returns Unit
+        coEvery { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar")) } returns Unit
+        coEvery { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar")) } returns Unit
+        coEvery { repository.getTasks() } returns listOf(
+            TaskEntity(id = 1, title = "1 - Cocinar", isDone = false)
+        )
+
+        val viewModel = TaskViewModel(repository)
+
+        viewModel.addTask("1 - Cocinar")
+        viewModel.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar", isDone = false))
+        viewModel.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar", isDone = true))
+        advanceUntilIdle()
+
+        coVerify(exactly = 1) { repository.addTask("1 - Cocinar") }
+        coVerify(exactly = 1) { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar", isDone = false)) }
+        coVerify(exactly = 1) { repository.toggleTask(TaskEntity(id = 1, title = "1 - Cocinar", isDone = true)) }
+
+        assertEquals(1, viewModel.uiState.value.tasks.size)
+        assertEquals(false, viewModel.uiState.value.tasks.first().isDone)
+        assertNull(viewModel.uiState.value.error)
+    }
+
 }
