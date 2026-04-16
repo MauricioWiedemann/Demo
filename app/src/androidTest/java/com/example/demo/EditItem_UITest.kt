@@ -9,6 +9,8 @@ import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.isChecked
+import androidx.test.espresso.matcher.ViewMatchers.isNotChecked
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -63,6 +65,15 @@ class EditItem_UITest {
         )
         button.perform(click())
 
+        val checkBox3 = onView(
+            allOf(
+                withId(R.id.checkTaskDone),
+                withParent(withParent(withId(R.id.rvTasks))),
+                isDisplayed()
+            )
+        )
+        checkBox3.check(matches(isNotChecked()))
+
         val checkBox = onView(
             allOf(
                 withId(R.id.checkTaskDone),
@@ -85,31 +96,7 @@ class EditItem_UITest {
                 isDisplayed()
             )
         )
-        checkBox2.check(matches(isDisplayed()))
-
-        val checkBox3 = onView(
-            allOf(
-                withId(R.id.checkTaskDone),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.rvTasks),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        checkBox3.perform(click())
-
-        val checkBox4 = onView(
-            allOf(
-                withId(R.id.checkTaskDone),
-                withParent(withParent(withId(R.id.rvTasks))),
-                isDisplayed()
-            )
-        )
-        checkBox4.check(matches(isDisplayed()))
+        checkBox2.check(matches(isChecked()))
     }
 
     private fun childAtPosition(
