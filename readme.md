@@ -1,12 +1,11 @@
 # Demo - ToDo List
 
-Aplicación Android desarrollada en **Kotlin** como demo de una **ToDo List**, enfocada en mostrar una arquitectura simple con **MVVM**, persistencia local con **Room** y pruebas automatizadas.
+Aplicación Android desarrollada en **Kotlin** como demo de una **ToDo List**, enfocada en mostrar una arquitectura simple con **ViewModel**, persistencia local con **Room** y pruebas automatizadas.
 
 ## Objetivo del proyecto
 
 Este proyecto fue creado como práctica para trabajar con:
 
-- Arquitectura **MVVM**
 - Persistencia local con **Room**
 - Manejo de estado con **ViewModel**
 - Coroutines en Android
@@ -81,3 +80,10 @@ app/
     │   └── AndroidManifest.xml
     ├── test/
     └── androidTest/
+```
+
+### Ejecución
+Con los siguientes comandos se ejecutan los **UnitTest** y **AndroidTest** con la opción de **Coverage** habilitada.
+
+- **UnitTest**:  `./gradlew :app:createDebugUnitTestCoverageReport`
+- **AndroidTest**:  `./gradlew :app:createDebugTestCoverageReport`
