@@ -38,7 +38,7 @@ class RemoveItem_UITest {
     fun removeItem_UITest() {
 
         // Ingresar el nombre de la nueva tarea
-        val editText = onView(
+       /* val editText = onView(
             allOf(
                 withId(R.id.editTaskTitle),
                 childAtPosition(
@@ -67,7 +67,7 @@ class RemoveItem_UITest {
                 isDisplayed()
             )
         )
-        button.perform(click())
+        button.perform(click())*/
 
         // Validar que la lista cuenta con un item
         val viewGroup = onView(

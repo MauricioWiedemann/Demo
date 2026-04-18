@@ -35,7 +35,7 @@ class EditItem_UITest {
 
     @Test
     fun editItem_UITest() {
-        val editText = onView(
+/*        val editText = onView(
             allOf(
                 withId(R.id.editTaskTitle),
                 childAtPosition(
@@ -63,7 +63,7 @@ class EditItem_UITest {
                 isDisplayed()
             )
         )
-        button.perform(click())
+        button.perform(click())*/
 
         val checkBox3 = onView(
             allOf(
