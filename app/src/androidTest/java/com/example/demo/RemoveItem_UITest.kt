@@ -37,38 +37,6 @@ class RemoveItem_UITest {
     @Test
     fun removeItem_UITest() {
 
-        // Ingresar el nombre de la nueva tarea
-       /* val editText = onView(
-            allOf(
-                withId(R.id.editTaskTitle),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        editText.perform(replaceText("Tarea 1"), closeSoftKeyboard())
-
-        // Utilizar el boton agregar
-        val button = onView(
-            allOf(
-                withId(R.id.btnAddTask), withText("Agregar"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        button.perform(click())*/
-
         // Validar que la lista cuenta con un item
         val viewGroup = onView(
             allOf(

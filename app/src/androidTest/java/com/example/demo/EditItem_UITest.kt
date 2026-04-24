@@ -35,35 +35,6 @@ class EditItem_UITest {
 
     @Test
     fun editItem_UITest() {
-/*        val editText = onView(
-            allOf(
-                withId(R.id.editTaskTitle),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        editText.perform(replaceText("Tarea 1"), closeSoftKeyboard())
-
-        val button = onView(
-            allOf(
-                withId(R.id.btnAddTask), withText("Agregar"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        button.perform(click())*/
 
         val checkBox3 = onView(
             allOf(

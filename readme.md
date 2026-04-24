@@ -86,4 +86,4 @@ app/
 Con los siguientes comandos se ejecutan los **UnitTest** y **AndroidTest** con la opción de **Coverage** habilitada.
 
 - **UnitTest**:  `./gradlew :app:createDebugUnitTestCoverageReport`
-- **AndroidTest**:  `./gradlew :app:createDebugTestCoverageReport`
+- **AndroidTest**:  `./gradlew :app:createDebugAndroidTestCoverageReport`
